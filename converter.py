@@ -20,7 +20,9 @@ if uploaded_file:
     output_doc = fitz.open()
 
     for page in doc:
-        pix = page.get_pixmap()
+        # pix = page.get_pixmap()
+        pix = page.get_pixmap(matrix=fitz.Matrix(2, 2))  # Ajuste os valores para aumentar a resolução
+
         img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
 
         # Inverter cores (modo negativo)
